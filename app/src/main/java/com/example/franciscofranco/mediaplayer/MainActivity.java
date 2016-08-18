@@ -27,18 +27,26 @@ public class MainActivity extends Activity {
 
     public void play(View view) {
         Log.d("FRANCO_DEBUG", "playing...");
-        Intent intent = new Intent(this, MusicService.class);
-        intent.putExtra(NEXT_SONG, "tequila");
-        startService(intent);
+        playSong("tequila");
     }
 
     public void stop(View view) {
         Log.d("FRANCO_DEBUG", "stop...");
-        stopService(new Intent(this, MusicService.class));
+        stopService();
     }
 
     public void rewind(View view) {
         Log.d("FRANCO_DEBUG", "rewind...");
+        stopService();
+        playSong("tequila");
+
+
+    }
+
+    public void forward(View view) {
+        Log.d("FRANCO_DEBUG", "forward...");
+        stopService();
+        playSong("la_joda");
     }
 
     public class ResponseReceiver extends BroadcastReceiver {
@@ -55,6 +63,16 @@ public class MainActivity extends Activity {
         Log.d("FRANCO_DEBUG", "playing next song...");
         Intent intent = new Intent(this, MusicService.class);
         intent.putExtra(NEXT_SONG, "la_joda");
+        startService(intent);
+    }
+
+    private void stopService() {
+        stopService(new Intent(this, MusicService.class));
+    }
+
+    private void playSong(String song) {
+        Intent intent = new Intent(this, MusicService.class);
+        intent.putExtra(NEXT_SONG, song);
         startService(intent);
     }
 }
