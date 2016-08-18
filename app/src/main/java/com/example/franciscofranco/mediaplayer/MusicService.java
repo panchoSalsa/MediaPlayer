@@ -14,14 +14,12 @@ public class MusicService extends Service {
         Log.d("FRANCO_DEBUG", "constructor");
     }
 
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("FRANCO_DEBUG", "started service");
 
         setNextSong(intent.getStringExtra(MainActivity.NEXT_SONG));
 
-//        mp = MediaPlayer.create(getApplicationContext(), R.raw.tequila);
         Log.d("FRANCO_DEBUG", "ok");
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 

@@ -37,6 +37,10 @@ public class MainActivity extends Activity {
         stopService(new Intent(this, MusicService.class));
     }
 
+    public void rewind(View view) {
+        Log.d("FRANCO_DEBUG", "rewind...");
+    }
+
     public class ResponseReceiver extends BroadcastReceiver {
 
         public static final String  ACTION_RESP =
